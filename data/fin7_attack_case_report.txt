@@ -1,0 +1,83 @@
+INCIDENT REPORT: SIMULATED FIN7 INTRUSION AGAINST CUSTOMERDB
+
+Note: This is a synthetic scenario created for a class project. It does not describe a real incident or real FIN7 activity.
+
+1. OVERVIEW
+
+On 3 September 2026, a simulated intrusion took place in a small corporate network. The activity is modelled on FIN7, a threat actor tracked by MITRE ATT&CK as group G0046. The attacker started on a Windows workstation named WS01, moved laterally to an application server named AppServer, and finally reached a customer database named CustomerDB. CustomerDB contains a data asset named CustomerData. The attack lasted 39 minutes, from 10:01 to 10:40, and used eight MITRE ATT&CK techniques across seven tactics.
+
+2. ENVIRONMENT
+
+WS01 is a Windows Workstation with IP address 10.0.1.20. WS01 has Medium criticality.
+
+AppServer is an Application Server with IP address 10.0.2.10. AppServer has High criticality.
+
+CustomerDB is a Customer Database. CustomerDB has Critical criticality.
+
+CustomerData is a data asset with High sensitivity. CustomerData is stored in CustomerDB.
+
+WS01 can reach AppServer over the network. AppServer can reach CustomerDB. CustomerDB contains CustomerData. Because of this, WS01 has an indirect path to CustomerData through AppServer and CustomerDB.
+
+3. THREAT ACTOR AND TECHNIQUES
+
+FIN7 (G0046) is the threat actor in this scenario. FIN7 uses the following MITRE ATT&CK techniques.
+
+FIN7 uses technique T1059.001 PowerShell. PowerShell is part of the Execution tactic.
+
+FIN7 uses technique T1082 System Information Discovery. System Information Discovery is part of the Discovery tactic.
+
+FIN7 uses technique T1046 Network Service Scanning. Network Service Scanning is part of the Discovery tactic.
+
+FIN7 uses technique T1555 Credentials from Password Stores. Credentials from Password Stores is part of the Credential Access tactic.
+
+FIN7 uses technique T1021 Remote Services. Remote Services is part of the Lateral Movement tactic.
+
+FIN7 uses technique T1213 Data from Information Repositories. Data from Information Repositories is part of the Collection tactic.
+
+FIN7 uses technique T1071.001 Web Protocols. Web Protocols is part of the Command and Control tactic.
+
+FIN7 uses technique T1565 Data Manipulation. Data Manipulation is part of the Impact tactic.
+
+4. ATTACK TIMELINE
+
+Event EVT001 occurred at 10:01:00 on WS01. It was a Process Creation event: PowerShell was executed on WS01. EVT001 indicates technique T1059.001 PowerShell (Execution). This was the first sign of compromise on the workstation.
+
+Event EVT002 occurred at 10:05:00 on WS01. It was a Discovery event: system information discovery was performed on WS01. EVT002 indicates technique T1082 System Information Discovery (Discovery). EVT002 followed EVT001.
+
+Event EVT003 occurred at 10:08:00 on WS01. It was a Network Activity event: network service scanning was detected from WS01. EVT003 indicates technique T1046 Network Service Scanning (Discovery). EVT003 followed EVT002.
+
+Event EVT004 occurred at 10:12:00 on WS01. It was a Credential Access event: credential access activity associated with password stores. EVT004 indicates technique T1555 Credentials from Password Stores (Credential Access). EVT004 followed EVT003.
+
+Event EVT005 occurred at 10:18:00 on WS01. It was a Lateral Movement event: a remote service connection was made from WS01 to AppServer. EVT005 indicates technique T1021 Remote Services (Lateral Movement). EVT005 followed EVT004. With this event the attacker moved from WS01 to AppServer.
+
+Event EVT006 occurred at 10:25:00 on AppServer. It was a Collection event: an information repository was accessed on AppServer. EVT006 indicates technique T1213 Data from Information Repositories (Collection). EVT006 followed EVT005.
+
+Event EVT007 occurred at 10:30:00 on AppServer. It was a Command and Control event: web protocol communication was observed. EVT007 indicates technique T1071.001 Web Protocols (Command and Control). EVT007 followed EVT006.
+
+Event EVT008 occurred at 10:40:00 on CustomerDB. It was an Impact event: data manipulation activity was detected in CustomerDB. EVT008 indicates technique T1565 Data Manipulation (Impact). EVT008 followed EVT007. This was the final stage of the attack.
+
+5. ATTACK PATH
+
+The observed host progression was WS01, then AppServer, then CustomerDB. The infrastructure path was WS01 to AppServer to CustomerDB to CustomerData.
+
+On WS01 the attacker used PowerShell, System Information Discovery, Network Service Scanning, Credentials from Password Stores, and Remote Services. On AppServer the attacker used Remote Services, Data from Information Repositories, and Web Protocols. On CustomerDB the attacker used Data Manipulation.
+
+6. AFFECTED SYSTEMS AND SENSITIVE ASSETS
+
+Three systems were affected: WS01, AppServer, and CustomerDB. The sensitive asset at risk is CustomerData, which has High sensitivity and is contained in CustomerDB, a database with Critical criticality. Both WS01 and AppServer had a path to CustomerData.
+
+7. IMPACT
+
+The attack resulted in unauthorized access to sensitive data, manipulation of data in CustomerDB, and an established command and control channel from AppServer.
+
+8. DETECTION OPPORTUNITIES
+
+The attack could have been detected at several points: PowerShell execution on WS01, system information discovery on WS01, network service scanning from WS01, the remote service connection from WS01 to AppServer, and web protocol communication from AppServer.
+
+9. RECOMMENDED RESPONSE
+
+Monitor PowerShell execution on WS01. Monitor discovery and network scanning activity on WS01. Use a network intrusion detection system to detect remote service connections between WS01 and AppServer. Inspect web protocol traffic leaving AppServer. Back up CustomerDB regularly so that manipulated data can be restored.
+
+10. LIMITATIONS
+
+This report is based on a synthetic scenario with eight simulated events. It may not reflect how FIN7 operates in real intrusions, and it contains no information about the attacker's motivation or goals.

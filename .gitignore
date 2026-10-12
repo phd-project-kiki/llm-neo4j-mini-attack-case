@@ -1,0 +1,24 @@
+# ---- Secrets: never commit ----
+.env
+.env_pipeline
+.env.*
+!.env_pipeline.example
+
+# ---- Python ----
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# ---- Editors and OS ----
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+~$*
+
+# ---- Logs and local output ----
+*.log
+results/

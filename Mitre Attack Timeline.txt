@@ -1,0 +1,114 @@
+================================================================================
+ATTACK TIMELINE
+================================================================================
+
+Event ID:       EVT001
+Timestamp:      2026-09-03T10:01:00
+Type:           Process Creation
+Description:    PowerShell executed on WS01
+Technique:      T1059.001 - PowerShell
+Tactic:         Execution
+Host:           WS01
+Host IP:        10.0.1.20
+Criticality:    Medium
+
+Event ID:       EVT002
+Timestamp:      2026-09-03T10:05:00
+Type:           Discovery
+Description:    System information discovery performed on WS01
+Technique:      T1082 - System Information Discovery
+Tactic:         Discovery
+Host:           WS01
+Host IP:        10.0.1.20
+Criticality:    Medium
+
+Event ID:       EVT003
+Timestamp:      2026-09-03T10:08:00
+Type:           Network Activity
+Description:    Network service scanning detected from WS01
+Technique:      T1046 - Network Service Scanning
+Tactic:         Discovery
+Host:           WS01
+Host IP:        10.0.1.20
+Criticality:    Medium
+
+Event ID:       EVT004
+Timestamp:      2026-09-03T10:12:00
+Type:           Credential Access
+Description:    Credential access activity associated with password stores
+Technique:      T1555 - Credentials from Password Stores
+Tactic:         Credential Access
+Host:           WS01
+Host IP:        10.0.1.20
+Criticality:    Medium
+
+Event ID:       EVT005
+Timestamp:      2026-09-03T10:18:00
+Type:           Lateral Movement
+Description:    Remote service connection from WS01 to AppServer
+Technique:      T1021 - Remote Services
+Tactic:         Lateral Movement
+Host:           WS01
+Host IP:        10.0.1.20
+Criticality:    Medium
+
+Event ID:       EVT006
+Timestamp:      2026-09-03T10:25:00
+Type:           Collection
+Description:    Information repository accessed on AppServer
+Technique:      T1213 - Data from Information Repositories
+Tactic:         Collection
+Host:           AppServer
+Host IP:        10.0.2.10
+Criticality:    High
+
+Event ID:       EVT007
+Timestamp:      2026-09-03T10:30:00
+Type:           Command and Control
+Description:    Web protocol communication observed
+Technique:      T1071.001 - Web Protocols
+Tactic:         Command and Control
+Host:           AppServer
+Host IP:        10.0.2.10
+Criticality:    High
+
+Event ID:       EVT008
+Timestamp:      2026-09-03T10:40:00
+Type:           Impact
+Description:    Data manipulation activity detected in CustomerDB
+Technique:      T1565 - Data Manipulation
+Tactic:         Impact
+Host:           CustomerDB
+Host IP:        None
+Criticality:    Critical
+
+================================================================================
+
+================================================================================
+SENSITIVE ASSETS
+================================================================================
+
+Source Host:        AppServer
+Database:           CustomerDB
+Database Criticality: Critical
+Data Asset:         CustomerData
+Sensitivity:        High
+
+Source Host:        WS01
+Database:           CustomerDB
+Database Criticality: Critical
+Data Asset:         CustomerData
+Sensitivity:        High
+
+================================================================================
+
+================================================================================
+ATTACK PATHS
+================================================================================
+
+Host: WS01
+Host: AppServer
+
+Host: WS01
+Host: AppServer
+Database: CustomerDB

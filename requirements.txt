@@ -1,0 +1,16 @@
+# Pinned versions (tested on Python 3.12). Update deliberately and record in CHANGELOG.md.
+
+# Phase 2 pipeline (app.py): FastAPI + LlamaIndex + Ollama + Neo4j
+fastapi==0.142.2
+uvicorn==0.54.0
+python-multipart==0.0.32
+neo4j==5.28.7
+openai==3.26.0
+python-dotenv==1.2.4
+llama-index-core==0.14.25
+llama-index-llms-ollama==0.11.0
+llama-index-embeddings-ollama==0.10.0
+llama-index-graph-stores-neo4j==0.8.0
+
+# Original Streamlit version (app_streamlit.py)
+streamlit==1.65.0
